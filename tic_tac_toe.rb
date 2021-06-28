@@ -1,6 +1,16 @@
 class Player
   attr_reader :name
-  @@playground = Hash.new
+  @@playground = {
+    1 => " ",
+    2 => " ",
+    3 => " ",
+    4 => " ",
+    5 => " ",
+    6 => " ",
+    7 => " ",
+    8 => " ",
+    9 => " "
+  }
 
   def self.print_and_flush(str)
     print str
@@ -22,7 +32,7 @@ class Player
   end
 
   def self.print_playground
-    playground
+    #playground
     r = 0
     @@playground.each do |key, value|
       if r < 2
@@ -38,9 +48,17 @@ class Player
 end
 
 class PlayerOne < Player
+  def choice
+    super
+    @@playground[@choice] = 'X'
+  end
 end
 
 class PlayerTwo < Player
+  def choice
+    super
+    @@playground[@choice] = 'O'
+  end
 end
 
 Player.print_playground
