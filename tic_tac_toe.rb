@@ -1,3 +1,5 @@
+require 'pry'
+
 class Player
   attr_reader :name
   @@playground = {
@@ -44,26 +46,52 @@ class Player
         r = 0
       end
     end
-  end       
+  end
+  
+  def playground
+    p @@playground
+  end
+
+  def self.winning_condition
+    
 end
 
 class PlayerOne < Player
   def choice
     super
-    @@playground[@choice] = 'X'
+    if @@playground[@choice] == " "
+      @@playground[@choice] = 'X'
+    else
+      puts "You have to choose empty positions!"
+      choice
+    end
   end
 end
 
 class PlayerTwo < Player
   def choice
     super
-    @@playground[@choice] = 'O'
+    if @@playground[@choice] == " "
+      @@playground[@choice] = 'O'
+    else
+      puts "You have to choose empty positions!"
+      choice
+    end
   end
 end
 
 Player.print_playground
 
-# puts "Player one : What's your name?"
-# player_one = Player.new(gets.chomp)
-# puts "Player two : What's your name?"
-# player_two = Player.new(gets.chomp)
+puts "Player one : What's your name?"
+player_one = PlayerOne.new(gets.chomp)
+puts "Player two : What's your name?"
+player_two = PlayerTwo.new(gets.chomp)
+
+puts "#{player_one.name}'s turn"
+# binding.pry
+player_one.choice
+Player.print_playground
+
+puts "#{player_two.name}'s turn"
+player_two.choice
+Player.print_playground
