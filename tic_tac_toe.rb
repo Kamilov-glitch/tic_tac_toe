@@ -34,6 +34,7 @@ class Player
   end
 
   def self.print_playground
+    puts " "
     #playground
     r = 0
     @@playground.each do |key, value|
@@ -46,14 +47,35 @@ class Player
         r = 0
       end
     end
+    puts " "
   end
   
   def playground
     p @@playground
   end
 
-  def self.winning_condition
-    
+  def self.winning_condition(name)
+    if @@playground[1] == 'X' && @@playground[4] == 'X' && @@playground[7] == 'X' || @@playground[1] == 'O' && @@playground[4] == 'O' && @@playground[7] == 'O'
+      puts "You win #{name}. Congratulatiions!"
+    elsif @@playground[2] == 'X' && @@playground[5] == 'X' && @@playground[8] == 'X'
+      puts "You win #{name}. Congratulatiions!"
+    elsif @@playground[3] == 'X' && @@playground[6] == 'X' && @@playground[9] == 'X'
+      puts "You win #{name}. Congratulatiions!"
+    elsif @@playground[1] == 'X' && @@playground[5] == 'X' && @@playground[9] == 'X'
+      puts "You win #{name}. Congratulatiions!"
+    elsif @@playground[1] == 'X' && @@playground[2] == 'X' && @@playground[3] == 'X'
+      puts "You win #{name}. Congratulatiions!"
+    elsif @@playground[4] == 'X' && @@playground[5] == 'X' && @@playground[6] == 'X'
+      puts "You win #{name}. Congratulatiions!"
+    elsif @@playground[7] == 'X' && @@playground[8] == 'X' && @@playground[9] == 'X'
+      puts "You win #{}. Congratulatiions!"
+    elsif @@playground[3] == 'X' && @@playground[5] == 'X' && @@playground[7] == 'X'
+      puts "You win #{name}. Congratulatiions!"
+    elsif @@playground.has_value?(' ') == false
+      puts "Well boys it's a draw, you useless, lowlife, good-for-nothing bunch of dissapointments!"
+    end
+  end
+
 end
 
 class PlayerOne < Player
@@ -91,7 +113,9 @@ puts "#{player_one.name}'s turn"
 # binding.pry
 player_one.choice
 Player.print_playground
+Player.winning_condition(player_one.name)
 
 puts "#{player_two.name}'s turn"
 player_two.choice
 Player.print_playground
+Player.winning_condition(player_two.name)
